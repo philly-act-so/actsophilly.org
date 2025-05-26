@@ -13,6 +13,7 @@ export class ActsophillyOrgStack extends Stack {
       endpointConfiguration: {
         types: [apigateway.EndpointType.REGIONAL],
       },
+      deploy: false, // Disable automatic deployment
     });
 
     // Define a method for the root path "/"
