@@ -62,13 +62,13 @@ export const GitHubOidcRoleStacks = (app: App, repository: string) => {
       `@${repository.split("/").slice(-1)}` +
       `@${DEV_ENV_SUFFIX}`,
   });
-  new GitHubOidcRoleStack(app, stacknamePrefix + `-master`, {
-    ref: "refs/heads/master",
+  new GitHubOidcRoleStack(app, stacknamePrefix + `-main`, {
+    ref: "refs/heads/main",
     repository,
     managedPolicyList: [],
     policyStatements,
     roleName:
-      `github-actions` + `@${repository.split("/").slice(-1)}` + `@master`,
+      `github-actions` + `@${repository.split("/").slice(-1)}` + `@main`,
   });
   new GitHubOidcRoleStack(app, stacknamePrefix + `-all-branches`, {
     ref: "*",
