@@ -44,19 +44,24 @@ export class ActsophillyOrgStack extends Stack {
       }
     );
 
+    // Create a custom deployment
+    const deployment = new apigateway.Deployment(this, 'CustomDeployment', {
+      api,
+    });
+
+    // Create a custom stage with no suffix
+    const stage = new apigateway.Stage(this, 'CustomStage', {
+      deployment,
+      stageName: '', // Use an empty string to remove the stage name
+    });
+
+    // Associate the custom stage with the API
+    api.deploymentStage = stage;
+
     // Add a CloudFormation output for the API Gateway endpoint
     new CfnOutput(this, 'ApiGatewayUrl', {
       value: api.url,
       description: 'The URL of the API Gateway endpoint',
-    });
-
-    const blankStageDeployment = new apigateway.Deployment(this, 'BlankStageDeployment', {
-      api,
-    });
-
-    new apigateway.Stage(this, 'BlankStage', {
-      deployment: blankStageDeployment,
-      stageName: '', // Use an empty string to remove the stage name
     });
   }
 }
