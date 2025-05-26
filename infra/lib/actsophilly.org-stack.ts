@@ -9,14 +9,6 @@ export class ActsophillyOrgStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const queue = new sqs.Queue(this, 'ActsophillyOrgQueue', {
-      visibilityTimeout: Duration.seconds(300),
-    });
-
-    const topic = new sns.Topic(this, 'ActsophillyOrgTopic');
-
-    topic.addSubscription(new subs.SqsSubscription(queue));
-
     // Add API Gateway with a regional endpoint
     const api = new apigateway.RestApi(this, 'ActsophillyOrgApi', {
       restApiName: 'ActsophillyOrgApi',
