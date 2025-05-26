@@ -2,7 +2,7 @@ name: CI
 concurrency: ci-${{ github.ref }}
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 jobs:
   app-staging:
