@@ -28,7 +28,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.DEPLOYMENT_ROLE_ARN }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Deploy the app stack to the staging account
         working-directory: infra
         run: |
@@ -50,11 +50,11 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.DEPLOYMENT_ROLE_ARN }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Run itest
         env:
-          AWS_REGION: us-east-2
-          AWS_DEFAULT_REGION: us-east-2
+          AWS_REGION: us-east-1
+          AWS_DEFAULT_REGION: us-east-1
         working-directory: itest
         run: |
           npm run itest
@@ -82,7 +82,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.DEPLOYMENT_ROLE_ARN }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Deploy the app stack to the production account
         working-directory: infra
         run: |
@@ -104,11 +104,11 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.DEPLOYMENT_ROLE_ARN }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Run itest
         env:
-          AWS_REGION: us-east-2
-          AWS_DEFAULT_REGION: us-east-2
+          AWS_REGION: us-east-1
+          AWS_DEFAULT_REGION: us-east-1
         working-directory: itest
         run: |
           npm run itest
