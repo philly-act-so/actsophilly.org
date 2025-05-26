@@ -1,0 +1,19 @@
+{
+  "name": "itest",
+  "version": "1.0.0",
+  "description": "Integration tests for actsophilly.org.",
+  "main": "index.js",
+  "scripts": {
+    "itest": "bash itest.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philly-act-so/actsophilly.org.git"
+  },
+  "author": "Douglas Naphas <douglasnaphas@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/philly-act-so/actsophilly.org/issues"
+  },
+  "homepage": "https://github.com/philly-act-so/actsophilly.org#readme"
+}

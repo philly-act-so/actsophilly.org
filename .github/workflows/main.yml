@@ -1,0 +1,60 @@
+name: CI
+concurrency: ci-${{ github.ref }}
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+jobs:
+  app-staging:
+    runs-on: ubuntu-latest
+    environment: test
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install infra
+        working-directory: infra
+        run: |
+          npm install
+      - name: Build infra
+        working-directory: infra
+        run: npm run build
+      - name: Test infra
+        working-directory: infra
+        run: |
+          npm test
+      - name: Configure AWS Credentials, test env
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.DEPLOYMENT_ROLE_ARN }}
+          aws-region: us-east-2
+      - name: Deploy the app stack to the staging account
+        working-directory: infra
+        run: |
+          npm run deploy-app
+  itest-staging:
+    runs-on: ubuntu-latest
+    needs: [app-staging]
+    environment: test
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install itest
+        working-directory: itest
+        run: |
+          npm install
+      - name: Configure AWS Credentials, test env
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.DEPLOYMENT_ROLE_ARN }}
+          aws-region: us-east-2
+      - name: Run itest
+        env:
+          AWS_REGION: us-east-2
+          AWS_DEFAULT_REGION: us-east-2
+        working-directory: itest
+        run: |
+          npm run itest
