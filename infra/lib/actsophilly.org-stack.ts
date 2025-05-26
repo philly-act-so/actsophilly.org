@@ -1,4 +1,4 @@
-import { Duration, Stack, StackProps } from 'aws-cdk-lib';
+import { Duration, Stack, StackProps, CfnOutput } from 'aws-cdk-lib';
 import * as sns from 'aws-cdk-lib/aws-sns';
 import * as subs from 'aws-cdk-lib/aws-sns-subscriptions';
 import * as sqs from 'aws-cdk-lib/aws-sqs';
@@ -45,5 +45,11 @@ export class ActsophillyOrgStack extends Stack {
         ],
       }
     );
+
+    // Add a CloudFormation output for the API Gateway endpoint
+    new CfnOutput(this, 'ApiGatewayUrl', {
+      value: api.url,
+      description: 'The URL of the API Gateway endpoint',
+    });
   }
 }
