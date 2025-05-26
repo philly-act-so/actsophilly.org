@@ -10,6 +10,8 @@
     "test": "jest",
     "cdk": "cdk",
     "cdk-bootstrap": "npx cdk bootstrap",
+    "deploy-role-test-env": "bash scripts/deploy-role-test-env.sh",
+    "deploy-role-prod-env": "bash scripts/deploy-role-prod-env.sh",
     "deploy-role-all-branches": "bash scripts/deploy-role-all-branches.sh",
     "deploy-role-main": "bash scripts/deploy-role-main.sh",
     "deploy-app": "bash scripts/deploy-app.sh"
