@@ -1,9 +1,9 @@
 {
-  "name": "sredirect",
+  "name": "actsophilly.org",
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cdk-turnkey/brian-liberation"
+    "url": "git://github.com/philly-act-so/actsophilly.org"
   },
   "license": "Apache-2.0",
   "scripts": {
