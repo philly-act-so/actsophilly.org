@@ -48,5 +48,14 @@ export class ActsophillyOrgStack extends Stack {
       value: api.url,
       description: 'The URL of the API Gateway endpoint',
     });
+
+    const blankStageDeployment = new apigateway.Deployment(this, 'BlankStageDeployment', {
+      api,
+    });
+
+    new apigateway.Stage(this, 'BlankStage', {
+      deployment: blankStageDeployment,
+      stageName: '', // Use an empty string to remove the stage name
+    });
   }
 }
